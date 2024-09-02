@@ -17,18 +17,17 @@ body{
     font-family: "Manrope", sans-serif;
     font-size: 13px;
     background-color: var(--light-greyish-blue);
+    height: 100vh;
+    align-content: center;
 }
 
 .card{
     max-width: 50%;
+    margin: auto;
     display: grid;
     grid-template-columns: 2fr 3.3fr;
     border-radius: 10px;
     background-color: white;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     box-shadow: 15px 15px 20px rgba(0, 0, 0, 0.05);
 }
 
@@ -61,6 +60,7 @@ body{
     align-items: center;
     gap: 1rem;
     margin-top: 1rem;
+    z-index: 1;
 }
 
 .profile .avatar{
@@ -90,6 +90,8 @@ body{
     border-radius: 50%;
     text-align: center;
     margin-left: auto;
+    z-index: 3;
+    cursor: pointer;
 }
 
 .icon svg{
@@ -105,6 +107,14 @@ body{
     fill: white;
 }
 
+.icon.bg-color{
+    background-color: var(--dark-greyish-blue);
+}
+
+.icon.icon.bg-color svg{
+    fill: white;
+}
+
 .pop-up{
     background-color: var(--dark-greyish-blue);
     border-radius: 10px;
@@ -115,9 +125,17 @@ body{
     gap: 1rem;
     position: absolute;
     top: 50%;
-    left: 75.3%;
+    left: 62.6%;
     box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.05);
     display: none;
+}
+
+.pop-up.open{
+    animation: popup 1s;
+}
+
+.pop-up.close{
+    animation: popdown 1s;
 }
 
 .pop-up p{
@@ -138,6 +156,10 @@ body{
     border-right: 10px solid transparent;
 }
 
+.icon:hover{
+    background-color: var(--dark-greyish-blue);
+}
+
 
 .attribution{ 
     font-size: 11px; 
@@ -152,4 +174,118 @@ footer{
     position: fixed;
     bottom: 0;
     width: 100%;
+}
+
+
+@media (max-width: 380px){
+    .card{
+        max-width: 100%;
+        grid-template-columns: 1fr;
+        grid-template-rows: 2.1fr 3fr;
+        top: 0;
+        left: 0;
+        transform: none;
+        position: relative;
+        margin: 3rem 2rem;
+    }
+
+    .image{
+        border-bottom-left-radius: 0;
+        border-top-right-radius: 10px;
+    }
+
+    .content{
+        padding: 2rem;
+        padding-bottom: 1rem;
+    }
+
+    .content h1{
+        font-size: 1.2em;
+    }
+
+    .content p{
+        font-size: 1em;
+    }
+
+    .profile{
+        margin-top: 2rem;
+    }
+
+    .profile p{
+        font-size: 0.95em;
+    }
+
+    .pop-up{
+        border-radius: 0;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        left: 0;
+        top: calc(490.95px - 52px - 16px);
+        width: 100%;
+        justify-content: flex-start;
+        padding: 0 2rem;
+        height: 68px;
+    }
+
+    .pop-up::after{
+        border: none;
+    }
+
+    .pop-up.open{
+        animation: popupMob 0.5s;
+        transform-origin: 100% 50%;
+    }
+
+    .pop-up.close{
+        animation: popdownMob 0.5s;
+        transform-origin: 100% 50%;
+    }
+
+    .icon.bg-color{
+        background-color: var(--dark-blue);
+    }
+
+    .icon.bg-color svg{
+        fill: white;
+    }
+
+    footer{
+        position: relative;
+    }
+}
+
+@keyframes popup{
+    from{
+        transform: scale(0);
+    }
+    to{
+        transform: scale(1);
+    }
+}
+
+@keyframes popdown{
+    from{
+        transform: scale(1);
+    }
+    to{
+        transform: scale(0);
+    }
+}
+
+@keyframes popupMob{
+    from{
+        transform: scaleX(0);
+    }
+    to{
+        transform: scaleX(1);
+    }
+}
+
+@keyframes popdownMob{
+    from{
+        transform: scaleX(1);
+    }
+    to{
+        transform: scaleX(0);
+    }
 }
